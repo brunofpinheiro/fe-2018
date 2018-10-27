@@ -3,28 +3,83 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        
+        <script src="resources/js/funcoes.js"></script>
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 
         <title>SPA Cadastro</title>
     </head>
-    <body>
+    <body onload="initUI()">
         <div id="topo">
             <figure><img src="resources/images/logo.png"></figure>
             <nav>
                 <ul>
-                    <a href="#"><li>Home</li></a>
-                    <a href="#"><li>Cadastrar</li></a>
-                    <a href="#"><li>Alterar</li></a>
-                    <a href="#"><li>Excluir</li></a>
-                    <a href="#"><li>Consultar</li></a>
+                    <a href="#" id="menu_home" onclick="menuHomeClick()"><li>Home</li></a>
+                    <a href="#" id="menu_cadastrar" onclick="menuCadastrarClick()"><li>Cadastrar</li></a>
+                    <!-- <a href="#" id="menu_alterar"><li>Alterar</li></a> -->
+                    <!-- <a href="#" id="menu_excluir"><li>Excluir</li></a> -->
+                    <a href="#" id="menu_consultar" onclick="menuConsultarClick()"><li>Consultar</li></a>
                 </ul>
             </nav>    
         </div>
 
+        <h1 id="titulo_pagina"></h1>    
 
-        <h1>Cadastro de paciente</h1>    
-        
+        <section id="section_cadastrar">
+            <form id="frm_cadastrar">
+                    <label for="ipt_primeiro_nome">Primeiro nome:</label>
+                    <input type="text" id="ipt_primeiro_nome" placeholder="Informe o primeiro nome..."/>
+                    <label for="ipt_sobrenome">Sobrenome:</label>
+                    <input type="text" id="ipt_sobrenome" placeholder="Informe o sobrenome..."/>
+                    <label for="ipt_titulo">Título:</label>
+                    <input type="text" id="ipt_titulo" placeholder="Ex: professor, doutor, etc..."/>
+                    <label for="ipt_data_nascimento">Data de nascimento:</label>
+                    <input type="date" id="ipt_data_nascimento"/>
+                    <div id="div_radio_sexo">
+                        <label for="radio_sexo">Sexo:</label>
+                        <label for="radio_sexo" class="radio_sexo_lbl">M</label>
+                        <input type="radio" id="radio_sexo_m" class="radio_sexo" value="M" name="sexo"/>
+                        <label for="radio_sexo" class="radio_sexo_lbl">F</label>
+                        <input type="radio" id="radio_sexo_f" class="radio_sexo" value="F" name="sexo"/>
+                    </div>
+                    <label for="ipt_nome_mae">Nome da mãe:</label>
+                    <input type="text" id="ipt_nome_mae" placeholder="Informe o nome da mãe..."/>
+                    <label for="ipt_nome_pai">Nome do pai:</label>
+                    <input type="text" id="ipt_nome_pai" placeholder="Informe o nome do pai..."/>
+                    <label for="ipt_nacionalidade">Nacionalidade:</label>
+                    <input type="text" id="ipt_nacionalidade" placeholder="Ex: Brasileira, argentina, etc..."/>
+
+                    <label id="lbl_endereco">Endereço:</label>
+                    <label for="ipt_logradouro">Logradouro:</label>
+                    <input type="text" id="ipt_logradouro" placeholder="Ex: Avenida D"/>
+                    <label for="ipt_complemento">Complemento:</label>
+                    <input type="text" id="ipt_complemento" placeholder="Ex: Quadra 125, Lote 12"/>
+                    <label for="ipt_cep">CEP:</label>
+                    <input type="text" id="ipt_cep" placeholder="Ex: 74825010"/>
+                    <label for="ipt_bairro">Bairro:</label>
+                    <input type="text" id="ipt_bairro" placeholder="Ex: Setor Bueno"/>
+                    <label for="ipt_municipio">Município:</label>
+                    <input type="text" id="ipt_municipio" placeholder="Ex: Goiânia, Aparecida de Goiânia, etc..."/>
+                    <label for="ipt_estado">Estado:</label>
+                    <input type="text" id="ipt_estado" placeholder="Ex: Goiás"/>
+
+                    <label for="ipt_fone_fixo">Telefone fixo:</label>
+                    <input type="text" id="ipt_fone_fixo"/>
+                    <label for="ipt_fone_celular">Celular:</label>
+                    <input type="text" id="ipt_fone_celular"/>
+                    <label for="ipt_email">Email:</label>
+                    <input type="text" id="ipt_email"/>
+                    
+                    <div id="div_botoes">
+                        <button type="reset" name="btn_cancelar" class="btn_cancela">Cancelar</button>
+                        <button name="btn_enviar" class="btn_confirma" onclick="salvarPaciente()">Enviar</button>
+                    </div>
+            </form>
+            
+        </section>
+
+        <section id="section_consultar">
+
+        </section>
 
         <footer>
             <div>

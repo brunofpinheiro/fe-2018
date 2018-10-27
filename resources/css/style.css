@@ -7,16 +7,14 @@ html {
     font-size: 1em;
     color: #000;
     font-family: Verdana;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 body {
     width: 1000px;
-    height: 100vh;
     margin: auto;
     background-color: #ffffff;
     box-shadow: 0 0 8px #000000;
-
 }
 
 /********* TOPO *********/
@@ -32,8 +30,9 @@ body {
 }
 
 nav {
-    width: 100%;
-    vertical-align: middle;
+    /* width: 100%; */
+    /* vertical-align: middle; */
+    margin: auto;
 }
 
 nav a {
@@ -64,11 +63,17 @@ li {
     padding: 0 0.8em;
 }
 
+.selected_menu {
+    font-weight: bold;
+    background-color: #FBEEC1;
+}
+
 /********* FOOTER *********/
 footer {
-    width: 100%;
+    width: 1000px;
     bottom: 0;
     background-color: #FBEEC1;
+    margin-top: 5%;
     /*background-color: #BC986A;*/
     /*background-color: #A6C1D5;*/
 }
@@ -97,11 +102,105 @@ footer div a {
 
 /********* TÍTULOS *********/
 h1 {
-    color: red;
+    /* color: red; */
     font-size: 3em;
+}
+
+#titulo_pagina {
+    position: relative;
+    margin: 1em auto;
+    width: 600px;
 }
 
 h2 {
     font-size: 2em;
 }
 
+/********* SEÇÕES *********/
+input {
+    border-radius: 4px;
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+    width: 65%;
+    float: right;
+}
+
+input, label {
+    display: inline-block;
+    margin-bottom: 0.5em;
+    padding: 5px;
+}
+
+#section_cadastrar {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+}
+
+#section_cadastrar label {
+    width: 188px;
+}
+
+#section_cadastrar input, radio {
+}
+
+#section_cadastrar #div_radio_sexo {
+    display: inline-block;
+    width: 100%;
+}
+
+#section_cadastrar .radio_sexo_lbl, .radio_sexo {
+    width: fit-content;
+    float: unset;
+}
+
+#div_botoes {
+    display: flex;
+    margin: 5% 0;
+}
+
+#div_botoes button {
+    width: 110px;
+}
+
+#div_botoes button:first-child {
+    margin-right: 10px;
+}
+
+#section_cadastrar #lbl_endereco {
+    width: 100%;
+    text-align: center;
+}
+
+/********* BOTÕES *********/
+.btn_confirma {
+    display: block;
+    background-color: #239B56;
+    color: #ffffff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn_confirma:hover {
+    background-color: #2ECC71;
+}
+
+.btn_cancela {
+    display: block;
+    background-color: #CB4335;
+    color: #ffffff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn_cancela:hover {
+    background-color: #EC7063;
+    transition-duration: 0.1s;
+}
