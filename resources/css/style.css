@@ -6,7 +6,7 @@ html {
     margin: 0;
     font-size: 1em;
     color: #000;
-    font-family: Verdana;
+    font-family: sans-serif;
     overflow-x: hidden;
 }
 
@@ -103,7 +103,7 @@ footer div a {
 /********* TÍTULOS *********/
 h1 {
     /* color: red; */
-    font-size: 3em;
+    font-size: 2.5em;
 }
 
 #titulo_pagina {
@@ -132,29 +132,6 @@ input, label {
     padding: 5px;
 }
 
-#section_cadastrar {
-    width: 60%;
-    margin: 0 auto;
-    display: block;
-}
-
-#section_cadastrar label {
-    width: 188px;
-}
-
-#section_cadastrar input, radio {
-}
-
-#section_cadastrar #div_radio_sexo {
-    display: inline-block;
-    width: 100%;
-}
-
-#section_cadastrar .radio_sexo_lbl, .radio_sexo {
-    width: fit-content;
-    float: unset;
-}
-
 #div_botoes {
     display: flex;
     margin: 5% 0;
@@ -168,8 +145,36 @@ input, label {
     margin-right: 10px;
 }
 
+/**** SEÇÃO CADASTRAR *****/
+#section_cadastrar {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+}
+
+#section_cadastrar label {
+    width: 188px;
+}
+
+#section_cadastrar #div_radio_sexo {
+    display: inline-block;
+    width: 100%;
+}
+
+#section_cadastrar .radio_sexo_lbl, .radio_sexo {
+    width: fit-content;
+    float: unset;
+}
+
 #section_cadastrar #lbl_endereco {
     width: 100%;
+    text-align: center;
+}
+
+/**** SEÇÃO CONSULTAR *****/
+#tbl_consultar {
+    width: 100%;
+    border: 1px solid; 
     text-align: center;
 }
 
