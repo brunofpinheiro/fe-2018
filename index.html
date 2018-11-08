@@ -15,8 +15,6 @@
                 <ul>
                     <a href="#" id="menu_home" onclick="menuHomeClick()"><li>Home</li></a>
                     <a href="#" id="menu_cadastrar" onclick="menuCadastrarClick()"><li>Cadastrar</li></a>
-                    <!-- <a href="#" id="menu_alterar"><li>Alterar</li></a> -->
-                    <!-- <a href="#" id="menu_excluir"><li>Excluir</li></a> -->
                     <a href="#" id="menu_consultar" onclick="menuConsultarClick()"><li>Consultar</li></a>
                 </ul>
             </nav>    
@@ -33,7 +31,7 @@
                     <label for="ipt_titulo">Título:</label>
                     <input type="text" id="ipt_titulo" placeholder="Ex: professor, doutor, etc..."/>
                     <label for="ipt_data_nascimento">Data de nascimento:</label>
-                    <input type="date" id="ipt_data_nascimento"/>
+                    <input type="text" id="ipt_data_nascimento"/>
                     <div id="div_radio_sexo">
                         <label for="radio_sexo">Sexo:</label>
                         <label for="radio_sexo" class="radio_sexo_lbl">M</label>
@@ -71,7 +69,7 @@
                     
                     <div id="div_botoes">
                         <button type="reset" name="btn_cancelar" class="btn_cancela">Cancelar</button>
-                        <button name="btn_enviar" class="btn_confirma" onclick="salvarPaciente()">Enviar</button>
+                        <button name="btn_enviar" class="btn_confirma" onclick="cadastrarPaciente()">Enviar</button>
                     </div>
             </form>
             
@@ -86,9 +84,6 @@
         				<th>Título</th>
         				<th>Data de nascimento</th>
         				<th>Sexo</th>
-        				<!-- <th>Nome da mãe</th>
-        				<th>Nome do pai</th>
-        				<th>Nacionalidade</th> -->
         			</tr>
         		</table>
         	</form>

@@ -1,11 +1,15 @@
 var jsonList;
+var edicao;
+var indexSelecionado;
 
 function initUI() {
+    edicao = false;
+    indexSelecionado = "";
+
     document.getElementById("titulo_pagina").innerHTML = "Seja bem vindo(a)!";
-    document.getElementById("menu_home").classList.add("selected_menu");
+    paintMenu("menu_home");
     hideSections();
     initJSON();
-    // menuConsultarClick(); //TODO: tá aqui pra já carregar essa página na abertura
 }
 
 function initJSON() {
@@ -15,7 +19,19 @@ function initJSON() {
             "sobrenome": "Pinheiro",
             "titulo": "doutor",
             "dataNascimento": "02/09/1989",
-            "sexo": "M"
+            "sexo": "M",
+            "nomeMae": "Sandra Aparecida",
+            "nomePai": "Eustaquio Noronha",
+            "nacionalidade": "Brasileira",
+            "logradouro": "Rua 1057",
+            "complemento": "Quadra 125 Lote 12",
+            "cep": "74825210",
+            "bairro": "Pedro Ludovico",
+            "municipio": "Goiânia",
+            "estado": "Goiás",
+            "foneFixo": "3555-5555",
+            "foneCelular": "99999-9999",
+            "email": "email@gmail.com"
             }
         ]
     }
@@ -59,7 +75,7 @@ function resetForm(formulario) {
     document.getElementById(formulario).reset();   
 }
 
-function salvarPaciente() {
+function cadastrarPaciente() {
     let domPrimeiroNome   = document.getElementById("ipt_primeiro_nome").value;
     let domSobrenome      = document.getElementById("ipt_sobrenome").value;
     let domTitulo         = document.getElementById("ipt_titulo").value;
@@ -98,7 +114,12 @@ function salvarPaciente() {
         email: domEmail
     };
 
-    jsonList.pacientes.push(paciente);
+    if (edicao == true) {
+        atualizaPaciente(indexSelecionado);
+        edicao = false;
+    } else if (edicao == false) {
+        jsonList.pacientes.push(paciente);
+    }
 
     resetForm("frm_cadastrar");
 
@@ -120,10 +141,11 @@ function showSection(section) {
 }
 
 function resetTable(table) {
-    tab = document.getElementById(table);
+    var domTable = document.getElementById(table);
+    var domRows = document.getElementById(table).rows;
 
-    for (var i = 1; i <= tab.rows.length; i++) {
-        tab.deleteRow(i);
+    while (domRows.length > 1) {
+        domTable.deleteRow(1);
     }
 }
 
@@ -133,20 +155,94 @@ function loadJSONIntoTable(jsonObject) {
     var arrValues;
     let row;
     let col;
+    let a;
+    let linkText;
+    
+    domTable = document.getElementById("tbl_consultar");
 
-    table = document.getElementById("tbl_consultar");
-
-    for (var p in jsonObject.pacientes) {
+    for (var p = 0; p < jsonObject.pacientes.length; p++) {
         arrKeys   = Object.keys(jsonObject.pacientes[p]);
         arrValues = Object.values(jsonObject.pacientes[p]);
         row       = document.createElement("tr");
         
-        for (var v in arrValues) {
+        for (var v = 0; v < 5; v++) {
             col = document.createElement("td");
             col.appendChild(document.createTextNode(arrValues[v]));
             row.appendChild(col);
         }
-    }
 
-    table.appendChild(row);
+        //coluna Editar
+        col = document.createElement("td");
+        a = document.createElement("a");
+        var img = new Image();
+        img.src = "resources/images/edit_icon.png";
+        a.appendChild(img);
+        a.title = "Editar";
+        a.href = "#";
+        col.appendChild(a);
+        col.onclick = function() {
+            edicao = true;
+            menuCadastrarClick();
+            carregaPaciente(this.parentNode.rowIndex-1);
+        }
+        row.appendChild(col);
+
+        //coluna Excluir
+        col = document.createElement("td");
+        a = document.createElement("a");
+        var img = new Image();
+        img.src = "resources/images/delete_icon.png";
+        a.appendChild(img);
+        a.title = "Excluir";
+        a.href = "#";
+        col.appendChild(a);
+        col.onclick = function() {
+            jsonObject.pacientes.splice(this.parentNode.rowIndex-1, 1);
+            menuConsultarClick();
+        }
+        row.appendChild(col);
+        domTable.appendChild(row);
+    }
+}
+
+function carregaPaciente(pacientePos) {
+    arrValues = Object.values(jsonList.pacientes[pacientePos]);
+
+    document.getElementById("ipt_primeiro_nome").value = arrValues[0];
+    document.getElementById("ipt_sobrenome").value = arrValues[1];
+    document.getElementById("ipt_titulo").value = arrValues[2];
+    document.getElementById("ipt_data_nascimento").value = arrValues[3];
+    arrValues[4] == "M" ? document.getElementById("radio_sexo_m").checked = true : document.getElementById("radio_sexo_f").checked = true
+    document.getElementById("ipt_nome_mae").value = arrValues[5];
+    document.getElementById("ipt_nome_pai").value = arrValues[6];
+    document.getElementById("ipt_nacionalidade").value = arrValues[7];
+    document.getElementById("ipt_logradouro").value = arrValues[8];
+    document.getElementById("ipt_complemento").value = arrValues[9];
+    document.getElementById("ipt_cep").value = arrValues[10];
+    document.getElementById("ipt_bairro").value = arrValues[11];
+    document.getElementById("ipt_municipio").value = arrValues[12];
+    document.getElementById("ipt_estado").value = arrValues[13];
+    document.getElementById("ipt_fone_fixo").value = arrValues[14];
+    document.getElementById("ipt_fone_celular").value = arrValues[15];
+    document.getElementById("ipt_email").value = arrValues[16];
+}
+
+function atualizaPaciente(index) {
+    jsonList.pacientes[index].primeiroNome   = document.getElementById("ipt_primeiro_nome").value;    
+    jsonList.pacientes[index].sobrenome      = document.getElementById("ipt_sobrenome").value;
+    jsonList.pacientes[index].titulo         = document.getElementById("ipt_titulo").value;
+    jsonList.pacientes[index].dataNascimento = document.getElementById("ipt_data_nascimento").value;
+    jsonList.pacientes[index].sexo           = document.getElementById("radio_sexo_m").checked ? "M" : "F";
+    jsonList.pacientes[index].nomeMae        = document.getElementById("ipt_nome_mae").value;
+    jsonList.pacientes[index].nomePai        = document.getElementById("ipt_nome_pai").value;
+    jsonList.pacientes[index].nacionalidade  = document.getElementById("ipt_nacionalidade").value;
+    jsonList.pacientes[index].logradouro     = document.getElementById("ipt_logradouro").value;
+    jsonList.pacientes[index].complemento    = document.getElementById("ipt_complemento").value;
+    jsonList.pacientes[index].cep            = document.getElementById("ipt_cep").value;
+    jsonList.pacientes[index].bairro         = document.getElementById("ipt_bairro").value;
+    jsonList.pacientes[index].municipio      = document.getElementById("ipt_municipio").value;
+    jsonList.pacientes[index].estado         = document.getElementById("ipt_estado").value;
+    jsonList.pacientes[index].foneFixo       = document.getElementById("ipt_fone_fixo").value;
+    jsonList.pacientes[index].foneCelular    = document.getElementById("ipt_fone_celular").value;
+    jsonList.pacientes[index].email          = document.getElementById("ipt_email").value;
 }
