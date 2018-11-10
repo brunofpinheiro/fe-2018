@@ -10,7 +10,6 @@ function initUI() {
     paintMenu("menu_home");
     hideSections();
     initJSON();
-    menuConsultarClick();
 }
 
 function initJSON() {
@@ -287,4 +286,10 @@ function buscarElementoJSON(filtro) {
 
     resetTable('tbl_consultar');
     loadJSONIntoTable(jsonListFiltrado);
+}
+
+function limparFiltros() {
+    document.getElementById('filtro').value = "";
+    resetTable('tbl_consultar');
+    loadJSONIntoTable(jsonList);
 }

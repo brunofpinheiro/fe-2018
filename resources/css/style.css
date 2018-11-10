@@ -28,7 +28,7 @@ table tr {
 }
 
 table tr:nth-child(2n+2) {
-    background-color: rgba(101, 157, 190, .3);
+    background-color: rgba(101, 157, 190, .1);
 }
 
 /********* TOPO *********/
@@ -57,11 +57,12 @@ nav a {
 
 nav a:link {
     text-decoration: none;
+    transition: .2s all;
 }
 
 nav a:hover {
     font-weight: bold;
-    background-color: #FBEEC1;
+    background-color: rgba(255,255,255,.4);
 }
 
 ul {
@@ -77,15 +78,16 @@ li {
 
 .selected_menu {
     font-weight: bold;
-    background-color: #FBEEC1;
+    background-color: #fff;
 }
 
 /********* FOOTER *********/
 footer {
     width: 1000px;
     bottom: 0;
-    background-color: #FBEEC1;
+    background-color: #4f6d7a;
     margin-top: 5%;
+    color: #FFF;
 }
 
 footer div {
@@ -247,4 +249,25 @@ input, label {
 .btn_filtrar:hover {
     background-color: #FFD740;
     transition: 0.2s;
+}
+
+
+.btn_limpar_filtro {
+    float: right;
+    background-color: rgba(101, 157, 190, .6);
+    border: none;
+    padding: 5px 10px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.btn_limpar_filtro:hover {
+    background-color: rgba(101, 157, 190, .3);
+    transition-duration: 0.2s;
+}
+
+button:hover {
+    cursor: pointer;
 }
