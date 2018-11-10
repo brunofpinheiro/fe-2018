@@ -173,6 +173,11 @@ input, label {
     text-align: center;
 }
 
+#filtros {
+    display: inline-block;
+    margin: 20px 0;
+}
+
 /********* BOTÕES *********/
 .btn_confirma {
     display: block;
@@ -187,6 +192,7 @@ input, label {
 
 .btn_confirma:hover {
     background-color: #2ECC71;
+    transition: 0.2s;
 }
 
 .btn_cancela {
@@ -202,5 +208,20 @@ input, label {
 
 .btn_cancela:hover {
     background-color: #EC7063;
-    transition-duration: 0.1s;
+    transition-duration: 0.2s;
+}
+
+.btn_filtrar {
+    float: right;
+    background-color: #FFC400;
+    border: none;
+    padding: 5px 10px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.btn_filtrar:hover {
+    background-color: #FFD740;
+    transition: 0.2s;
 }

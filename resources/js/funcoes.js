@@ -6,10 +6,11 @@ function initUI() {
     edicao = false;
     indexSelecionado = "";
 
-    document.getElementById("titulo_pagina").innerHTML = "Seja bem vindo(a)!";
+    document.getElementById("titulo_pagina").innerHTML = "Seja bem-vindo(a)!";
     paintMenu("menu_home");
     hideSections();
     initJSON();
+    menuConsultarClick();
 }
 
 function initJSON() {
@@ -38,7 +39,7 @@ function initJSON() {
 }
 
 function menuHomeClick() {
-    document.getElementById("titulo_pagina").innerHTML = "Seja bem vindo(a)!";
+    document.getElementById("titulo_pagina").innerHTML = "Seja bem-vindo(a)!";
     resetMenuStyling();
     hideSections();
     paintMenu("menu_home");
@@ -114,16 +115,21 @@ function cadastrarPaciente() {
         email: domEmail
     };
 
-    if (edicao == true) {
-        atualizaPaciente(indexSelecionado);
-        edicao = false;
-    } else if (edicao == false) {
-        jsonList.pacientes.push(paciente);
+    
+    try {
+        if (edicao == true) {
+            atualizaPaciente(indexSelecionado);
+            edicao = false;
+        } else if (edicao == false) {
+            jsonList.pacientes.push(paciente);
+        }
+
+        resetForm("frm_cadastrar");
+          
+        alert('Paciente ' + domPrimeiroNome.toUpperCase() + ' ' + domSobrenome.toUpperCase() + ' salvo!');
+    } catch(e) {
+        alert("ERRO: " + e.message);
     }
-
-    resetForm("frm_cadastrar");
-
-    alert('Paciente ' + domPrimeiroNome + ' ' + domSobrenome + ' salvo!');
 }
 
 function paintMenu(menu) {
@@ -182,8 +188,9 @@ function loadJSONIntoTable(jsonObject) {
         col.appendChild(a);
         col.onclick = function() {
             edicao = true;
+            indexSelecionado = this.parentNode.rowIndex-1;
             menuCadastrarClick();
-            carregaPaciente(this.parentNode.rowIndex-1);
+            carregaPaciente(indexSelecionado);
         }
         row.appendChild(col);
 
@@ -197,8 +204,10 @@ function loadJSONIntoTable(jsonObject) {
         a.href = "#";
         col.appendChild(a);
         col.onclick = function() {
-            jsonObject.pacientes.splice(this.parentNode.rowIndex-1, 1);
-            menuConsultarClick();
+            if (window.confirm("Deseja realmente deletar esse paciente?")) {
+                jsonObject.pacientes.splice(this.parentNode.rowIndex-1, 1);
+                menuConsultarClick();
+            }
         }
         row.appendChild(col);
         domTable.appendChild(row);
@@ -245,4 +254,32 @@ function atualizaPaciente(index) {
     jsonList.pacientes[index].foneFixo       = document.getElementById("ipt_fone_fixo").value;
     jsonList.pacientes[index].foneCelular    = document.getElementById("ipt_fone_celular").value;
     jsonList.pacientes[index].email          = document.getElementById("ipt_email").value;
+}
+
+function filtrarPacientes() {
+    let ftrPrimeiroNome;
+    let ftrTitulo;
+
+    ftrPrimeiroNome = document.getElementById("ftr_nome").value;
+    ftrTitulo = document.getElementById("ftr_titulo").value;
+
+    if (ftrPrimeiroNome != "") {
+        buscarElementoJSON(ftrPrimeiroNome);
+    }
+}
+
+function buscarElementoJSON(filtro) {
+    var arrKeys;
+    var arrValues;
+    
+    for (let o in jsonList) {
+        arrKeys   = Object.keys(jsonObject.pacientes[o]);
+        arrValues = Object.values(jsonObject.pacientes[o]);
+        // jsonList.pacientes[index].primeiroNome
+        for (var v in arrValues) {
+            if (v == filtro) {
+                
+            }
+        }
+    }
 }

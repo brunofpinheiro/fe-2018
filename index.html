@@ -76,6 +76,16 @@
         </section>
 
         <section id="section_consultar">
+            <div id="filtros">
+                <label for="lbl_ftr_nome">Primeiro nome:</label>
+                <input type="text" id="ftr_nome"/>
+                <label for="lbl_ftr_titulo">Título:</label>
+                <input type="text" id="ftr_titulo"/>
+                <div>
+                    <button name="btn_filtrar" class="btn_filtrar" onclick="filtrarPacientes()">FILTRAR</button>
+                </div>
+            </div>
+
         	<form id="frm_consultar">
         		<table id="tbl_consultar">
         			<tr>
