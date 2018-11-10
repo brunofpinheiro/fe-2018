@@ -257,14 +257,12 @@ function atualizaPaciente(index) {
 }
 
 function filtrarPacientes() {
-    let ftrPrimeiroNome;
-    let ftrTitulo;
+    let filtro;
 
-    ftrPrimeiroNome = document.getElementById("ftr_nome").value;
-    ftrTitulo = document.getElementById("ftr_titulo").value;
+    filtro = document.getElementById("filtro").value;
 
-    if (ftrPrimeiroNome != "") {
-        buscarElementoJSON(ftrPrimeiroNome);
+    if (filtro != "") {
+        buscarElementoJSON(filtro);
     }
 }
 
@@ -277,9 +275,7 @@ function buscarElementoJSON(filtro) {
     };
  
     for (let o in jsonList.pacientes) {
-        arrKeys   = Object.keys(jsonList.pacientes[o]);
         arrValues = Object.values(jsonList.pacientes[o]);
-        // jsonList.pacientes[index].primeiroNome
 
         arrValues = arrValues.map(function(x){ return x.toUpperCase() });
         filtro = filtro.toUpperCase();
