@@ -271,15 +271,24 @@ function filtrarPacientes() {
 function buscarElementoJSON(filtro) {
     var arrKeys;
     var arrValues;
-    
-    for (let o in jsonList) {
-        arrKeys   = Object.keys(jsonObject.pacientes[o]);
-        arrValues = Object.values(jsonObject.pacientes[o]);
+
+    var jsonListFiltrado = {
+        pacientes: []
+    };
+ 
+    for (let o in jsonList.pacientes) {
+        arrKeys   = Object.keys(jsonList.pacientes[o]);
+        arrValues = Object.values(jsonList.pacientes[o]);
         // jsonList.pacientes[index].primeiroNome
-        for (var v in arrValues) {
-            if (v == filtro) {
-                
-            }
+
+        arrValues = arrValues.map(function(x){ return x.toUpperCase() });
+        filtro = filtro.toUpperCase();
+
+        if (arrValues.indexOf(filtro) > -1) {
+            jsonListFiltrado.pacientes.push(jsonList.pacientes[o]);
         }
     }
+
+    resetTable('tbl_consultar');
+    loadJSONIntoTable(jsonListFiltrado);
 }

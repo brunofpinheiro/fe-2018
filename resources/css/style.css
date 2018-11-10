@@ -17,6 +17,20 @@ body {
     box-shadow: 0 0 8px #000000;
 }
 
+table {
+    border-collapse: collapse;
+    border: none !important;
+}
+
+table tr {
+    margin: 10px 0;
+    height: 2.2rem;
+}
+
+table tr:nth-child(2n+2) {
+    background-color: rgba(101, 157, 190, .3);
+}
+
 /********* TOPO *********/
 #topo {
     display: inline-flex;
@@ -105,6 +119,7 @@ h1 {
     position: relative;
     margin: 1em auto;
     width: 600px;
+    text-align: center;
 }
 
 h2 {
@@ -171,11 +186,19 @@ input, label {
     width: 100%;
     border: 1px solid; 
     text-align: center;
+    margin-top: 2rem;
 }
 
 #filtros {
     display: inline-block;
-    margin: 20px 0;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+#filtros .container {
+    margin: 0 auto; 
+    width: 50%;
 }
 
 /********* BOTÕES *********/
